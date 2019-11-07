@@ -12,7 +12,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
     // Add logo image.
     //
-    this.add.image(400, 200, 'logo');
+    this.add.image(400, 0, 'logo');
 
 
     // Display a progress bar.
@@ -89,7 +89,7 @@ export default class PreloaderScene extends Phaser.Scene {
       this.ready();
     }.bind(this));
 
-    this.timedEvent =this.time.delayedCall(3000, this.ready, [], this);
+    this.time.delayedCall(1000, this.ready, [], this);
 
     // Load assets needed in our game.
     //
@@ -111,4 +111,3 @@ export default class PreloaderScene extends Phaser.Scene {
   create () {
   }
 };
-
