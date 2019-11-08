@@ -19,7 +19,7 @@ export default class TitleScene extends Phaser.Scene {
       -config.height / 2 + position * 100
     );
 
-    var text = this.add.text(0, 0, text, { fontSize: '24px', fill: '#ffffff' });
+    var text = this.add.text(0, 0, text, { fontFamily: 'Righteous', fontSize: '24px', fill: '#ffffff' });
     Phaser.Display.Align.In.Center(text, button);
 
     button.on('pointerdown', function (pointer) {

@@ -14,9 +14,15 @@ export default class GameScene extends Phaser.Scene {
   create () {
 
     this.score = 0;
-    
-    this.scoreText = this.add.text(20, 20, '0', { fontSize: '30px', fill: '#0000ff' });
+    this.hit = 0;
+    this.miss = 0;
+    this.rounds = 0;
+
+    this.scoreText = this.add.text(20, 20, '0', { fontFamily: 'Righteous', fontSize: '30px', fill: '#0000ff' });
+    this.hitText = this.add.text(100, 20, '0', { fontFamily: 'Righteous', fontSize: '30px', fill: '#0000ff' });
+    this.missText = this.add.text(150, 20, '0', { fontFamily: 'Righteous', fontSize: '30px', fill: '#0000ff' });
     this.countdownText = this.add.text(config.width - 100, 20, '', {
+      fontFamily: 'Righteous',
       fontSize: '30px',
       fill: '#0000ff',
       fixedWidth: 80,
@@ -24,7 +30,7 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.input.on('pointerdown', function (pointer) {
-      
+
       if (!this.currentTarget || !this.currentTarget.active) {
         return;
       }
@@ -32,12 +38,17 @@ export default class GameScene extends Phaser.Scene {
       if (this.currentTarget.getBounds().contains(pointer.downX, pointer.downY)) {
         this.score += this.countdown;
         this.scoreText.text = this.score;
+        this.hit += 1;
+        this.hitText.text = this.hit;
+      } else {
+        this.miss += 1;
+        this.missText.text = this.miss;
       }
 
       this.startRound();
 
     }.bind(this));
-    
+
     this.startRound();
   }
 
@@ -55,9 +66,48 @@ export default class GameScene extends Phaser.Scene {
       this.currentTarget.destroy();
     }
 
-    this.startRoundTimer = this.time.addEvent({ 
-      delay: 1000, 
-      callback: this.onStartRound, 
+    this.rounds += 1;
+    if (this.rounds > config.maxRounds) {
+
+      // Remove the info texts.
+      //
+      this.scoreText.destroy();
+      this.hitText.destroy();
+      this.missText.destroy();
+      this.countdownText.destroy();
+
+      // Display game over.
+      //
+      this.add.text(0, config.height / 2 - 20, 'GAME OVER', {
+        fontFamily: 'Righteous',
+        fontSize: '50px',
+        fill: '#0000ff',
+        fixedWidth: config.width,
+        align: 'center'
+      });
+
+      // Display final score.
+      //
+      this.add.text(0, config.height / 2 + 20, this.score, {
+        fontFamily: 'Righteous',
+        fontSize: '50px',
+        fill: '#0000ff',
+        fixedWidth: config.width,
+        align: 'center'
+      });
+
+      this.time.addEvent({
+        delay: 5000,
+        callback: () => { this.scene.start('Title') },
+        callbackScope: this
+      });
+
+      return;
+    }
+
+    this.startRoundTimer = this.time.addEvent({
+      delay: 1000,
+      callback: this.onStartRound,
       callbackScope: this
     });
   }
@@ -81,7 +131,7 @@ export default class GameScene extends Phaser.Scene {
 
   countdownTick () {
     this.countdownTimer = this.time.addEvent({
-      delay: 100,
+      delay: config.tick,
       callback: this.onCountdownTick,
       callbackScope: this
     });

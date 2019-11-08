@@ -12,7 +12,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
     // Add logo image.
     //
-    this.add.image(400, 0, 'logo');
+    //this.add.image(400, 0, 'logo');
 
 
     // Display a progress bar.
@@ -29,7 +29,7 @@ export default class PreloaderScene extends Phaser.Scene {
     var loadingText =this.make.text({
       x: width / 2,
       y: height / 2 - 50,
-      text: 'Loading....',
+      text: 'Loading...',
       style: {
         font: '20px monospace',
         fill: '#ffffff'
@@ -93,6 +93,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
     // Load assets needed in our game.
     //
+    this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
     this.load.image('BlueButton', blueButton);
     this.load.image('BlueButtonHighlight', blueButtonHighlight);
   }
@@ -109,5 +110,11 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   create () {
+
+    WebFont.load({
+      google: {
+          families: [ 'Righteous' ]
+      },
+    });
   }
 };
