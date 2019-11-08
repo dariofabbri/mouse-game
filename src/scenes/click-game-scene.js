@@ -5,7 +5,7 @@ import config from '../config/config';
 export default class GameScene extends Phaser.Scene {
 
   constructor () {
-    super('Game');
+    super('ClickGame');
   }
 
   preload () {

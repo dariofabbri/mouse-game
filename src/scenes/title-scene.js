@@ -16,7 +16,7 @@ export default class TitleScene extends Phaser.Scene {
       button,
       this.add.zone(config.width / 2, config.width / 2, config.width, config.height),
       0,
-      -config.height / 2 + position * 100
+      -config.height / 2 + position * 60
     );
 
     var text = this.add.text(0, 0, text, { fontFamily: 'Righteous', fontSize: '24px', fill: '#ffffff' });
@@ -36,8 +36,9 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create () {
-    this.addTitleButton(0, 'Play', 'Game');
-    this.addTitleButton(1, 'Options', 'Options');
-    this.addTitleButton(2, 'Credits', 'Credits');
+    this.addTitleButton(0, 'Bersagli', 'ClickGame');
+    this.addTitleButton(1, 'Trascina', 'DragGame');
+    this.addTitleButton(2, 'Options', 'Options');
+    this.addTitleButton(3, 'Credits', 'Credits');
   }
 };
