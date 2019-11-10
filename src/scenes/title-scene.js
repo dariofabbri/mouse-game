@@ -38,7 +38,7 @@ export default class TitleScene extends Phaser.Scene {
   create () {
     this.addTitleButton(0, 'Bersagli', 'ClickGame');
     this.addTitleButton(1, 'Trascina', 'DragGame');
-    this.addTitleButton(2, 'Options', 'Options');
-    this.addTitleButton(3, 'Credits', 'Credits');
+    this.addTitleButton(2, 'Opzioni', 'Options');
+    this.addTitleButton(3, 'Crediti', 'Credits');
   }
 };

@@ -1,6 +1,7 @@
 import 'phaser';
 import blueButton from '../assets/blue-button.png';
 import blueButtonHighlight from '../assets/blue-button-highlight.png';
+import target from '../assets/target.png';
 
 export default class PreloaderScene extends Phaser.Scene {
 
@@ -96,6 +97,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
     this.load.image('BlueButton', blueButton);
     this.load.image('BlueButtonHighlight', blueButtonHighlight);
+    this.load.image('Target', target);
   }
 
   init () {

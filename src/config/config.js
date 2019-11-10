@@ -1,10 +1,10 @@
 import 'phaser';
 
 export default {
-  type: Phaser.AUTO,
+  type: Phaser.CANVAS,
   parent: 'phaser-example',
-  width: 800,
-  height: 600,
+  width: 1200,
+  height: 700,
   margin: 20,
   countdown: 100,
   maxRounds: 10,
